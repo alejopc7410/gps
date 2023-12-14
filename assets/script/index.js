@@ -5,7 +5,7 @@ import {select, selectAll, onEvent} from './utility.js'
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxlamFuZHJvcGMwNSIsImEiOiJjbHEzd2ZoYzgwMHM4MnJvaGhoZWFybnpoIn0.27E07iRs7vSpMJ9dA3gmGw';
 let latitude = 49.8204672;
 let longitude = -97.1702272;
-let marker = new mapboxgl.Marker()
+let marker = new mapboxgl.Marker();
 
 
 const map = new mapboxgl.Map({
@@ -27,11 +27,11 @@ function getLocation(position) {
     map.setCenter([newLongitude, newLatitude]);
 }
 
-// map.dragPan.disabled()
-// map.keyboard.disabled()
-// map.scrollZoom.disabled()
-// map.doubleClickZoom.disabled()
-// map.touchZoomRotate.disabled()
+map.dragPan.disable()
+map.keyboard.disable()
+map.scrollZoom.disable()
+map.doubleClickZoom.disable()
+map.touchZoomRotate.disable()
 
 const options = {
     enableHighAccuracy: true,
