@@ -5,6 +5,7 @@ import {select, selectAll, onEvent} from './utility.js'
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxlamFuZHJvcGMwNSIsImEiOiJjbHEzd2ZoYzgwMHM4MnJvaGhoZWFybnpoIn0.27E07iRs7vSpMJ9dA3gmGw';
 let latitude = 49.8204672;
 let longitude = -97.1702272;
+let marker = new mapboxgl.Marker()
 
 
 const map = new mapboxgl.Map({
@@ -16,17 +17,21 @@ const map = new mapboxgl.Map({
 
 function getLocation(position) {
     let { latitude: newLatitude, longitude: newLongitude } = position.coords;
-
+    
     longitude = newLongitude 
     latitude = newLatitude
-
-    let marker = new mapboxgl.Marker()
-    .setLngLat([newLongitude, newLatitude])
-    .addTo(map)
-
+    
+    marker.setLngLat([newLongitude, newLatitude]).addTo(map)
+    
     map.setZoom(13)
     map.setCenter([newLongitude, newLatitude]);
 }
+
+// map.dragPan.disabled()
+// map.keyboard.disabled()
+// map.scrollZoom.disabled()
+// map.doubleClickZoom.disabled()
+// map.touchZoomRotate.disabled()
 
 const options = {
     enableHighAccuracy: true,
@@ -37,7 +42,7 @@ function handleError(error) {
     console.log(error.message)
 }
 
-
+console.log(map)
 if (navigator.geolocation) {
     navigator.geolocation.watchPosition(getLocation, handleError, options)
 } else {
